@@ -218,6 +218,25 @@ class ApiClient implements ApiInterface
      * API interface implementation
      */
 
+    public function sendWhatsppTemplate($data)
+    {
+        if (empty($data)) {
+            return $this->handleError('Empty data');
+        }
+        $requestResult = $this->sendRequest('whatsapp/contacts/sendTemplateByPhone', 'POST', $data);
+
+        return $this->handleResult($requestResult);
+    }
+
+    public function getWhatsappTemplates($data)
+    {
+        if (empty($data))
+        {
+            return $this->handleError('Empty data');
+        }
+        $requestResult = $this->sendRequest('whatsapp/templates/', 'GET',$data);
+        return $this->handleResult($requestResult);
+    }
 
     /**
      * Create address book
